@@ -5,4 +5,7 @@
                  [org.clojure/clojure-contrib "1.2.0"]
                  [org.apache.lucene/lucene-core "3.0.3"]
                  [org.apache.lucene/lucene-highlighter "3.0.3"]
-                 [org.apache.lucene/lucene-analyzers "3.0.0"]])
+                 [org.apache.lucene/lucene-analyzers "3.0.0"]]
+  :dev-dependencies 
+  [[swank-clojure "1.2.1"]]
+  )
