@@ -1,26 +1,21 @@
 (ns clucy.core
+  (:use [clojure.contrib.string :only [as-str]])
   (:require [clojure.java.io :as io])
-  (:import (java.io StringReader)
-           (org.apache.lucene.analysis.standard StandardAnalyzer)
-           (org.apache.lucene.document Document Field Field$Index Field$Store)
-           (org.apache.lucene.index IndexWriter IndexWriter$MaxFieldLength Term)
-           (org.apache.lucene.queryParser QueryParser)
-           (org.apache.lucene.search BooleanClause BooleanClause$Occur
-                                     BooleanQuery IndexSearcher TermQuery)
-           (org.apache.lucene.search.highlight Highlighter QueryScorer
-                                               SimpleHTMLFormatter)
-           (org.apache.lucene.store NIOFSDirectory RAMDirectory)
-           (org.apache.lucene.util Version)))
+  (:import [java.io StringReader]
+           [org.apache.lucene.analysis.standard StandardAnalyzer]
+           [org.apache.lucene.document Document Field Field$Index Field$Store]
+           [org.apache.lucene.index IndexWriter IndexWriter$MaxFieldLength Term]
+           [org.apache.lucene.queryParser QueryParser]
+           [org.apache.lucene.search BooleanClause BooleanClause$Occur
+                                     BooleanQuery IndexSearcher TermQuery]
+           [org.apache.lucene.search.highlight Highlighter QueryScorer
+                                               SimpleHTMLFormatter]
+           [org.apache.lucene.store NIOFSDirectory RAMDirectory]
+           [org.apache.lucene.util Version]))
 
 (def *version* Version/LUCENE_30)
 (def *analyzer* (StandardAnalyzer. *version*))
 (def *optimize-frequency* 1)
-
-;; To avoid a dependency on either contrib or 1.2+
-(defn as-str [x]
-  (if (keyword? x)
-    (name x)
-    (str x)))
 
 (defstruct
     #^{:doc "Structure for clucy indexes."}
