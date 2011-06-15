@@ -20,7 +20,7 @@
   (import 
    '(org.apache.lucene.analysis
      CharArraySet Analyzer KeywordAnalyzer PerFieldAnalyzerWrapper SimpleAnalyzer StopAnalyzer WhitespaceAnalyzer Token TokenStream NumericTokenStream TeeSinkTokenFilter$SinkTokenStream TokenFilter ASCIIFoldingFilter CachingTokenFilter ISOLatin1AccentFilter LengthFilter LowerCaseFilter PorterStemFilter StopFilter TeeSinkTokenFilter Tokenizer CharTokenizer LetterTokenizer LowerCaseTokenizer WhitespaceTokenizer KeywordTokenizer Token$TokenAttributeFactory CharArraySet$CharArraySetIterator NormalizeCharMap CharStream CharFilter BaseCharFilter MappingCharFilter CharReader TeeSinkTokenFilter$SinkFilter WordlistLoader)
-   '(org.apache.lucene.analysis.ngram EdgeNGramTokenFilter NGramTokenFilter EdgeNGramTokenizer NGramTokenizer)))
-
+   '(org.apache.lucene.analysis.ngram EdgeNGramTokenFilter NGramTokenFilter EdgeNGramTokenizer NGramTokenizer)
+   '(org.apache.lucene.analysis.tokenattributes FlagsAttribute OffsetAttribute PayloadAttribute PositionIncrementAttribute TermAttribute TypeAttribute)))
 
 
