@@ -18,11 +18,9 @@
 
 (defn import-analysis []
   (import 
-   '(org.apache.lucene.analysis Analyzer KeywordAnalyzer
-     PerFieldAnalyzerWrapper SimpleAnalyzer StopAnalyzer
-     WhitespaceAnalyzer CharArraySet$CharArraySetIterator Token
-     TokenStream TokenFilter CachingTokenFilter ISOLatin1AccentFilter
-     LengthFilter LowerCaseFilter PorterStemFilter StopFilter
-     TeeTokenFilter Tokenizer CharTokenizer LetterTokenizer
-     LowerCaseTokenizer WhitespaceTokenizer KeywordTokenizer
-     SinkTokenizer WordlistLoader)))
+   '(org.apache.lucene.analysis
+     CharArraySet Analyzer KeywordAnalyzer PerFieldAnalyzerWrapper SimpleAnalyzer StopAnalyzer WhitespaceAnalyzer Token TokenStream NumericTokenStream TeeSinkTokenFilter$SinkTokenStream TokenFilter ASCIIFoldingFilter CachingTokenFilter ISOLatin1AccentFilter LengthFilter LowerCaseFilter PorterStemFilter StopFilter TeeSinkTokenFilter Tokenizer CharTokenizer LetterTokenizer LowerCaseTokenizer WhitespaceTokenizer KeywordTokenizer Token$TokenAttributeFactory CharArraySet$CharArraySetIterator NormalizeCharMap CharStream CharFilter BaseCharFilter MappingCharFilter CharReader TeeSinkTokenFilter$SinkFilter WordlistLoader)
+   '(org.apache.lucene.analysis.ngram EdgeNGramTokenFilter NGramTokenFilter EdgeNGramTokenizer NGramTokenizer)))
+
+
+
