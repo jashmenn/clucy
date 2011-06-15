@@ -1,17 +1,10 @@
 (ns clucy.core
   (:use [clojure.contrib.string :only [as-str]])
-  (:require [clojure.java.io :as io])
-  (:import [java.io StringReader]
-           [org.apache.lucene.analysis.standard StandardAnalyzer]
-           [org.apache.lucene.document Document Field Field$Index Field$Store]
-           [org.apache.lucene.index IndexWriter IndexWriter$MaxFieldLength Term]
-           [org.apache.lucene.queryParser QueryParser]
-           [org.apache.lucene.search BooleanClause BooleanClause$Occur
-                                     BooleanQuery IndexSearcher TermQuery]
-           [org.apache.lucene.search.highlight Highlighter QueryScorer
-                                               SimpleHTMLFormatter]
-           [org.apache.lucene.store NIOFSDirectory RAMDirectory]
-           [org.apache.lucene.util Version]))
+  (:require [clojure.java.io :as io]
+            [clucy.imports :as imp])
+  (:import [java.io StringReader]))
+
+(imp/import-basics)
 
 (def *version* Version/LUCENE_30)
 (def *analyzer* (StandardAnalyzer. *version*))
