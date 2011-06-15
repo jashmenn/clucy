@@ -5,6 +5,13 @@
   (:import [java.io Reader StringReader InputStreamReader 
             InputStream]))
 
+(imp/import-basics)
+
+(def version-as-object
+  (last (seq 
+    (.getEnumConstants 
+     (Class/forName "org.apache.lucene.util.Version")))))
+
 (defn make-reader 
   [readable]
   (cond

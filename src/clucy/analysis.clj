@@ -5,14 +5,8 @@
   (:require [clojure.java.io :as io]
             [clucy.imports :as imp]))
 
+(imp/import-basics)
 (imp/import-analysis)
-
-(defn tokenizer [type input & tokenizer-args]
-  (let [klass (condp = type
-                  :ngram NGramTokenizer)
-        reader (make-reader input)]
-  (clojure.lang.Reflector/invokeConstructor 
-   klass (to-array (concat [reader] tokenizer-args)))))
 
 (defn token-stream-seq
 "Returns a lazy sequence on a
@@ -36,13 +30,23 @@ org.apache.lucene.analysis.TokenStream. By default returns the .term of the Term
                       (.close s))))]
        (lazy-seq (step stream)))))
 
+(defn tokenizer 
+  "an easy (and opinionated) way to create tokenizers."
+  [type input & tokenizer-args]
+  (let [klass (condp = type
+                  :ngram NGramTokenizer
+                  :standard StandardTokenizer)
+        reader (make-reader input)
+        constr-args (condp = klass
+                        NGramTokenizer (concat [reader] tokenizer-args)
+                        StandardTokenizer [version-as-object reader])]
+    (clojure.lang.Reflector/invokeConstructor 
+     klass (into-array Object constr-args))))
+
 (comment
 
-  (let [tok (tokenizer :ngram "my dog has fleas" 1 1)]
+  (let [tok (tokenizer :standard 
+                       "The White House said, \"hello world.\"")]
     (prn (token-stream-seq tok)))
 
-  (let [tok (tokenizer :ngram "my dog has fleas" 1 1)]
-    (prn (token-stream-seq tok 
-          (fn [s] (.startOffset 
-                  (.getAttribute s OffsetAttribute))))))
-  )
+ )
